@@ -14,12 +14,19 @@ public class LifeStateFactory implements
 
     @Override
     public LifeState createState(LifeState.Label label) {
-        return switch (label) {
-            case ASLEEP -> new Asleep(lifeStateReporter);
-            case AWAKE -> new Awake(lifeStateReporter);
-            case HUNGRY -> new Hungry(lifeStateReporter);
-            case TIRED -> new Tired(lifeStateReporter);
-        };
+
+        switch (label) {
+            case ASLEEP:
+                return new Asleep(lifeStateReporter);
+            case AWAKE:
+                return new Awake(lifeStateReporter);
+            case HUNGRY:
+                return new Hungry(lifeStateReporter);
+            case TIRED:
+                return new Tired(lifeStateReporter);
+        }
+
+        throw new IllegalArgumentException("Don't know how to create state for label:" + label);
     }
 
 }

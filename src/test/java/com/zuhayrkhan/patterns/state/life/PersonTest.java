@@ -1,7 +1,7 @@
 package com.zuhayrkhan.patterns.state.life;
 
 import com.zuhayrkhan.patterns.state.life.model.stateful.NewPerson;
-import com.zuhayrkhan.patterns.state.life.model.stateful.NewPersonWrapperFactory;
+import com.zuhayrkhan.patterns.state.life.model.stateful.NewPersonFactory;
 import com.zuhayrkhan.patterns.state.life.model.stateful.Person;
 import com.zuhayrkhan.patterns.state.life.model.stateful.PersonFactory;
 import com.zuhayrkhan.patterns.state.life.service.LifeStateReporter;
@@ -26,8 +26,8 @@ class PersonTest {
     private final PersonFactory personFactory =
             new PersonFactory(lifeStateRegistry);
 
-    private final NewPersonWrapperFactory newPersonWrapperFactory =
-            new NewPersonWrapperFactory(lifeStateReporter);
+    private final NewPersonFactory newPersonFactory =
+            new NewPersonFactory(lifeStateFactory);
 
     @Test
     void person_can_live_their_life() {
@@ -59,7 +59,7 @@ class PersonTest {
     @Test
     void new_person_can_live_their_life() {
 
-        NewPerson zuhayr = newPersonWrapperFactory.createNewPerson("Zuhayr");
+        NewPerson zuhayr = newPersonFactory.createNewPerson("Zuhayr");
 
         lifeStateReporter.reportLifeStatus(zuhayr);
 
@@ -73,7 +73,7 @@ class PersonTest {
     @Test
     void new_person_can_live_their_life_wrong() {
 
-        NewPerson zuhayr = newPersonWrapperFactory.createNewPerson("Zuhayr");
+        NewPerson zuhayr = newPersonFactory.createNewPerson("Zuhayr");
 
         lifeStateReporter.reportLifeStatus(zuhayr);
 

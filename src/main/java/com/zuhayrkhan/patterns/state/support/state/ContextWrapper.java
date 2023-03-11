@@ -4,4 +4,8 @@ public interface ContextWrapper<STATE, LABEL> {
 
     Context<STATE, LABEL> getContext();
 
+    default STATE getState() {
+        return getContext().getState();
+    }
+
 }
