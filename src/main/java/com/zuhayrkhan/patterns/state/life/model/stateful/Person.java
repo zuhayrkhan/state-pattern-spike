@@ -7,8 +7,8 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class Person {
 
-    private final AtomicReference<LifeState.State> lifeStateRef =
-            new AtomicReference<>(LifeState.State.ASLEEP);
+    private final AtomicReference<LifeState.Label> lifeStateRef =
+            new AtomicReference<>(LifeState.Label.ASLEEP);
 
     private final LifeStateRegistry lifeStateRegistry;
 
@@ -20,7 +20,7 @@ public class Person {
     }
 
     private LifeState getLifeState() {
-        return lifeStateRegistry.getLifeState(lifeStateRef.get());
+        return lifeStateRegistry.getState(lifeStateRef.get());
     }
 
     public void goToSleep() {
@@ -43,11 +43,11 @@ public class Person {
         return name;
     }
 
-    public void setStatus(LifeState.State state) {
-        lifeStateRef.set(state);
+    public void setStatus(LifeState.Label label) {
+        lifeStateRef.set(label);
     }
 
-    public LifeState.State getState() {
+    public LifeState.Label getState() {
         return lifeStateRef.get();
     }
 }

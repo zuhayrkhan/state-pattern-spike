@@ -13,7 +13,7 @@ public class Tired implements LifeState {
 
     @Override
     public void goToSleep(Person person) {
-        person.setStatus(State.ASLEEP);
+        person.setStatus(Label.ASLEEP);
         lifeStateReporter.reportLifeStatus(person);
     }
 }

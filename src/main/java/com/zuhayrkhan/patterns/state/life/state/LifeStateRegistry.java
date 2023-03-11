@@ -1,56 +1,13 @@
 package com.zuhayrkhan.patterns.state.life.state;
 
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.function.Supplier;
+import com.zuhayrkhan.patterns.state.support.StateFactory;
+import com.zuhayrkhan.patterns.state.support.StateRegistry;
 
-public class LifeStateRegistry {
+public class LifeStateRegistry extends StateRegistry<LifeState, LifeState.Label> {
 
-    private final ConcurrentMap<LifeState.State, LifeState> states
-            = new ConcurrentHashMap<>();
-
-    private final LifeStateFactory lifeStateFactory;
-
-    public LifeStateRegistry(LifeStateFactory lifeStateFactory) {
-        this.lifeStateFactory = lifeStateFactory;
+    public LifeStateRegistry(StateFactory<LifeState, LifeState.Label> lifeStateFactory) {
+        super(lifeStateFactory);
     }
 
-    public LifeState getLifeState(LifeState.State state) {
-        return createIfNecessary(state);
-    }
-
-    public LifeState old_getLifeState(LifeState.State state) {
-        return switch (state) {
-            case ASLEEP -> createIfNecessary(state, lifeStateFactory::createAsleep);
-            case AWAKE -> createIfNecessary(state, lifeStateFactory::createAwake);
-            case HUNGRY -> createIfNecessary(state, lifeStateFactory::createHungry);
-            case TIRED -> createIfNecessary(state, lifeStateFactory::createTired);
-        };
-    }
-
-    private LifeState createIfNecessary(final LifeState.State state) {
-        if (states.get(state) == null) {
-            LifeState lifeState = lifeStateFactory.createLifeState(state);
-            LifeState existing = states.putIfAbsent(state, lifeState);
-            if (existing != null) {
-                return existing;
-            }
-            return lifeState;
-        }
-        return states.get(state);
-    }
-
-    private LifeState createIfNecessary(final LifeState.State state,
-                                        final Supplier<LifeState> stateCreator) {
-        if (states.get(state) == null) {
-            LifeState lifeState = stateCreator.get();
-            LifeState existing = states.putIfAbsent(state, lifeState);
-            if (existing != null) {
-                return existing;
-            }
-            return lifeState;
-        }
-        return states.get(state);
-    }
 
 }

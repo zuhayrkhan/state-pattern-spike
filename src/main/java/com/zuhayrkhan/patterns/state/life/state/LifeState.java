@@ -4,7 +4,7 @@ import com.zuhayrkhan.patterns.state.life.model.stateful.Person;
 
 public interface LifeState {
 
-    enum State {
+    enum Label {
         ASLEEP,
         AWAKE,
         HUNGRY,
