@@ -1,7 +1,7 @@
 package com.zuhayrkhan.patterns.state.life.state;
 
 import com.zuhayrkhan.patterns.state.life.service.LifeStateReporter;
-import com.zuhayrkhan.patterns.state.support.StateFactory;
+import com.zuhayrkhan.patterns.state.support.state.StateFactory;
 
 public class LifeStateFactory implements
         StateFactory<LifeState, LifeState.Label> {

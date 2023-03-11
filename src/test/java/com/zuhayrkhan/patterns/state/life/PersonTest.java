@@ -3,8 +3,9 @@ package com.zuhayrkhan.patterns.state.life;
 import com.zuhayrkhan.patterns.state.life.model.stateful.Person;
 import com.zuhayrkhan.patterns.state.life.model.stateful.PersonFactory;
 import com.zuhayrkhan.patterns.state.life.service.LifeStateReporter;
+import com.zuhayrkhan.patterns.state.life.state.LifeState;
 import com.zuhayrkhan.patterns.state.life.state.LifeStateFactory;
-import com.zuhayrkhan.patterns.state.life.state.LifeStateRegistry;
+import com.zuhayrkhan.patterns.state.support.state.StateRegistry;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -17,8 +18,8 @@ class PersonTest {
     private final LifeStateFactory lifeStateFactory =
             new LifeStateFactory(lifeStateReporter);
 
-    private final LifeStateRegistry lifeStateRegistry =
-            new LifeStateRegistry(lifeStateFactory);
+    private final StateRegistry<LifeState, LifeState.Label> lifeStateRegistry =
+            new StateRegistry<>(lifeStateFactory);
 
     private final PersonFactory personFactory =
             new PersonFactory(lifeStateRegistry);

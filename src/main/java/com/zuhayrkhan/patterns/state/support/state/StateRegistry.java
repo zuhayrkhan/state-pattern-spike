@@ -1,4 +1,4 @@
-package com.zuhayrkhan.patterns.state.support;
+package com.zuhayrkhan.patterns.state.support.state;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;

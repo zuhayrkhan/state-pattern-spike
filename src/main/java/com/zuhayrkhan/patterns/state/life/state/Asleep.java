@@ -13,7 +13,7 @@ public class Asleep implements LifeState {
 
     @Override
     public void wakeUp(Person person) {
-        person.setStatus(Label.AWAKE);
+        person.setLabel(Label.AWAKE);
         lifeStateReporter.reportLifeStatus(person);
     }
 }

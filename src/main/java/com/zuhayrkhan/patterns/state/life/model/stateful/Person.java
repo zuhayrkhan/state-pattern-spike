@@ -1,53 +1,36 @@
 package com.zuhayrkhan.patterns.state.life.model.stateful;
 
 import com.zuhayrkhan.patterns.state.life.state.LifeState;
-import com.zuhayrkhan.patterns.state.life.state.LifeStateRegistry;
+import com.zuhayrkhan.patterns.state.support.state.StateRegistry;
+import com.zuhayrkhan.patterns.state.support.state.StatefulModel;
 
-import java.util.concurrent.atomic.AtomicReference;
-
-public class Person {
-
-    private final AtomicReference<LifeState.Label> lifeStateRef =
-            new AtomicReference<>(LifeState.Label.ASLEEP);
-
-    private final LifeStateRegistry lifeStateRegistry;
+public class Person extends StatefulModel<LifeState, LifeState.Label> {
 
     private final String name;
 
-    public Person(LifeStateRegistry lifeStateRegistry, String name) {
-        this.lifeStateRegistry = lifeStateRegistry;
+    public Person(StateRegistry<LifeState, LifeState.Label> lifeStateRegistry, String name) {
+        super(lifeStateRegistry, LifeState.Label.ASLEEP);
         this.name = name;
     }
 
-    private LifeState getLifeState() {
-        return lifeStateRegistry.getState(lifeStateRef.get());
-    }
-
     public void goToSleep() {
-        getLifeState().goToSleep(this);
+        getState().goToSleep(this);
     }
 
     public void wakeUp() {
-        getLifeState().wakeUp(this);
+        getState().wakeUp(this);
     }
 
     public void becomeHungry() {
-        getLifeState().becomeHungry(this);
+        getState().becomeHungry(this);
     }
 
     public void becomeTired() {
-        getLifeState().becomeTired(this);
+        getState().becomeTired(this);
     }
 
     public String getName() {
         return name;
     }
 
-    public void setStatus(LifeState.Label label) {
-        lifeStateRef.set(label);
-    }
-
-    public LifeState.Label getState() {
-        return lifeStateRef.get();
-    }
 }

@@ -1,4 +1,4 @@
-package com.zuhayrkhan.patterns.state.support;
+package com.zuhayrkhan.patterns.state.support.state;
 
 public interface StateFactory<STATE, LABEL> {
 

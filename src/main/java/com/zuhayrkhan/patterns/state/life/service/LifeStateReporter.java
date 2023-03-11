@@ -9,7 +9,7 @@ public class LifeStateReporter {
     private static final Logger LOGGER = LoggerFactory.getLogger(LifeStateReporter.class);
 
     public void reportLifeStatus(Person person) {
-        LOGGER.info("{}: {}", person.getName(), person.getState());
+        LOGGER.info("{}: {}", person.getName(), person.getLabel());
     }
 
 }

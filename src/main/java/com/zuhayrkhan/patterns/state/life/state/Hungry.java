@@ -13,7 +13,7 @@ public class Hungry implements LifeState {
 
     @Override
     public void becomeTired(Person person) {
-        person.setStatus(Label.TIRED);
+        person.setLabel(Label.TIRED);
         lifeStateReporter.reportLifeStatus(person);
     }
 }

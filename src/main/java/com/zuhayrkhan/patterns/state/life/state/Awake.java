@@ -13,13 +13,13 @@ public class Awake implements LifeState {
 
     @Override
     public void becomeHungry(Person person) {
-        person.setStatus(Label.HUNGRY);
+        person.setLabel(Label.HUNGRY);
         lifeStateReporter.reportLifeStatus(person);
     }
 
     @Override
     public void becomeTired(Person person) {
-        person.setStatus(Label.TIRED);
+        person.setLabel(Label.TIRED);
         lifeStateReporter.reportLifeStatus(person);
     }
 

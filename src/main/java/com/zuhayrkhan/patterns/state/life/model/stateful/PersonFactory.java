@@ -1,12 +1,13 @@
 package com.zuhayrkhan.patterns.state.life.model.stateful;
 
-import com.zuhayrkhan.patterns.state.life.state.LifeStateRegistry;
+import com.zuhayrkhan.patterns.state.life.state.LifeState;
+import com.zuhayrkhan.patterns.state.support.state.StateRegistry;
 
 public class PersonFactory {
 
-    private final LifeStateRegistry lifeStateRegistry;
+    private final StateRegistry<LifeState, LifeState.Label> lifeStateRegistry;
 
-    public PersonFactory(LifeStateRegistry lifeStateRegistry) {
+    public PersonFactory(StateRegistry<LifeState, LifeState.Label> lifeStateRegistry) {
         this.lifeStateRegistry = lifeStateRegistry;
     }
 
