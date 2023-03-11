@@ -1,10 +1,10 @@
 package com.zuhayrkhan.patterns.state.life.model.stateful;
 
 import com.zuhayrkhan.patterns.state.life.state.LifeState;
+import com.zuhayrkhan.patterns.state.support.state.AbstractContext;
 import com.zuhayrkhan.patterns.state.support.state.StateRegistry;
-import com.zuhayrkhan.patterns.state.support.state.StatefulModel;
 
-public class Person extends StatefulModel<LifeState, LifeState.Label> {
+public class Person extends AbstractContext<LifeState, LifeState.Label> {
 
     private final String name;
 

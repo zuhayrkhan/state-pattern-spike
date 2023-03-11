@@ -2,14 +2,14 @@ package com.zuhayrkhan.patterns.state.support.state;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-public abstract class StatefulModel<STATE, LABEL> {
+public abstract class AbstractContext<STATE, LABEL> {
 
     private final AtomicReference<LABEL> labelRef;
 
     private final StateRegistry<STATE, LABEL> stateRegistry;
 
-    protected StatefulModel(final StateRegistry<STATE, LABEL> stateRegistry,
-                            final LABEL initialLabel) {
+    protected AbstractContext(final StateRegistry<STATE, LABEL> stateRegistry,
+                              final LABEL initialLabel) {
         labelRef = new AtomicReference<>(initialLabel);
         this.stateRegistry = stateRegistry;
     }
