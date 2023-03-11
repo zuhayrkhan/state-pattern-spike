@@ -10,6 +10,15 @@ public class LifeStateFactory {
         this.lifeStateReporter = lifeStateReporter;
     }
 
+    LifeState createLifeState(LifeState.State state) {
+        return switch (state) {
+            case ASLEEP -> new Asleep(lifeStateReporter);
+            case AWAKE -> new Awake(lifeStateReporter);
+            case HUNGRY -> new Hungry(lifeStateReporter);
+            case TIRED -> new Tired(lifeStateReporter);
+        };
+    }
+
     Asleep createAsleep() {
         return new Asleep(lifeStateReporter);
     }

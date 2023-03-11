@@ -1,6 +1,6 @@
 package com.zuhayrkhan.patterns.state.life.state;
 
-import com.zuhayrkhan.patterns.state.life.model.Person;
+import com.zuhayrkhan.patterns.state.life.model.stateful.Person;
 
 public interface LifeState {
 

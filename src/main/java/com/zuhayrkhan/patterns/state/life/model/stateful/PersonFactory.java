@@ -1,4 +1,4 @@
-package com.zuhayrkhan.patterns.state.life.model;
+package com.zuhayrkhan.patterns.state.life.model.stateful;
 
 import com.zuhayrkhan.patterns.state.life.state.LifeStateRegistry;
 

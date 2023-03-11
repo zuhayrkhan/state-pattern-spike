@@ -1,6 +1,6 @@
 package com.zuhayrkhan.patterns.state.life.service;
 
-import com.zuhayrkhan.patterns.state.life.model.Person;
+import com.zuhayrkhan.patterns.state.life.model.stateful.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
