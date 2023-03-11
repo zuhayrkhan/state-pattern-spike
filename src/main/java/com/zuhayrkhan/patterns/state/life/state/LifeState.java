@@ -1,4 +1,6 @@
-package com.zuhayrkhan.patterns.state.life;
+package com.zuhayrkhan.patterns.state.life.state;
+
+import com.zuhayrkhan.patterns.state.life.model.Person;
 
 public interface LifeState {
 
@@ -9,19 +11,19 @@ public interface LifeState {
         TIRED,
     }
 
-    default void goToSleep() {
+    default void goToSleep(Person person) {
         throw new IllegalStateException("goToSleep not appropriate in current state");
     }
 
-    default void wakeUp() {
+    default void wakeUp(Person person) {
         throw new IllegalStateException("wakeUp not appropriate in current state");
     }
 
-    default void becomeHungry() {
+    default void becomeHungry(Person person) {
         throw new IllegalStateException("becomeHungry not appropriate in current state");
     }
 
-    default void becomeTired() {
+    default void becomeTired(Person person) {
         throw new IllegalStateException("becomeTired not appropriate in current state");
     }
 

@@ -1,4 +1,4 @@
-package com.zuhayrkhan.patterns.state.life;
+package com.zuhayrkhan.patterns.state.life.model;
 
 import com.zuhayrkhan.patterns.state.life.state.LifeState;
 import com.zuhayrkhan.patterns.state.life.state.LifeStateRegistry;
@@ -12,32 +12,42 @@ public class Person {
 
     private final LifeStateRegistry lifeStateRegistry;
 
-    public Person(LifeStateRegistry lifeStateRegistry) {
+    private final String name;
+
+    public Person(LifeStateRegistry lifeStateRegistry, String name) {
         this.lifeStateRegistry = lifeStateRegistry;
+        this.name = name;
     }
 
     private LifeState getLifeState() {
         return lifeStateRegistry.getLifeState(lifeStateRef.get());
     }
 
-    public void goToSleep(Person person) {
-        getLifeState().goToSleep(person);
+    public void goToSleep() {
+        getLifeState().goToSleep(this);
     }
 
-    public void wakeUp(Person person) {
-        getLifeState().wakeUp(person);
+    public void wakeUp() {
+        getLifeState().wakeUp(this);
     }
 
-    public void becomeHungry(Person person) {
-        getLifeState().becomeHungry(person);
+    public void becomeHungry() {
+        getLifeState().becomeHungry(this);
     }
 
-    public void becomeTired(Person person) {
-        getLifeState().becomeTired(person);
+    public void becomeTired() {
+        getLifeState().becomeTired(this);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setStatus(LifeState.State state) {
+        lifeStateRef.set(state);
     }
 
     public LifeState.State getState() {
         return lifeStateRef.get();
     }
-
 }

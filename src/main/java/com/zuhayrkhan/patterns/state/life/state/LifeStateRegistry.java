@@ -1,4 +1,4 @@
-package com.zuhayrkhan.patterns.state.life;
+package com.zuhayrkhan.patterns.state.life.state;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -16,14 +16,12 @@ public class LifeStateRegistry {
     }
 
     public LifeState getLifeState(LifeState.State state) {
-        switch (state) {
+        return switch (state) {
             case ASLEEP -> createIfNecessary(state, lifeStateFactory::createAsleep);
             case AWAKE -> createIfNecessary(state, lifeStateFactory::createAwake);
             case HUNGRY -> createIfNecessary(state, lifeStateFactory::createHungry);
             case TIRED -> createIfNecessary(state, lifeStateFactory::createTired);
-            default -> throw new IllegalArgumentException("Don't know about state:" + state);
-        }
-        throw new IllegalArgumentException("Don't know about state:" + state);
+        };
     }
 
     private LifeState createIfNecessary(final LifeState.State state,
