@@ -3,11 +3,10 @@ package com.zuhayrkhan.patterns.state.life;
 import com.zuhayrkhan.patterns.state.life.model.stateful.Person;
 import com.zuhayrkhan.patterns.state.life.model.stateful.PersonFactory;
 import com.zuhayrkhan.patterns.state.life.service.LifeStateReporter;
-import com.zuhayrkhan.patterns.state.life.state.LifeState;
 import com.zuhayrkhan.patterns.state.life.state.LifeStateFactory;
-import com.zuhayrkhan.patterns.state.support.state.StateRegistry;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PersonTest {
@@ -17,9 +16,6 @@ class PersonTest {
 
     private final LifeStateFactory lifeStateFactory =
             new LifeStateFactory(lifeStateReporter);
-
-    private final StateRegistry<LifeState> lifeStateRegistry =
-            new StateRegistry<>(lifeStateFactory);
 
     private final PersonFactory personFactory =
             new PersonFactory(lifeStateFactory);
@@ -32,9 +28,20 @@ class PersonTest {
         lifeStateReporter.reportLifeStatus(zuhayr);
 
         zuhayr.wakeUp();
+
+        assertThat(zuhayr.getStateName()).isEqualTo("Awake");
+
         zuhayr.becomeHungry();
+
+        assertThat(zuhayr.getStateName()).isEqualTo("Hungry");
+
         zuhayr.becomeTired();
+
+        assertThat(zuhayr.getStateName()).isEqualTo("Tired");
+
         zuhayr.goToSleep();
+
+        assertThat(zuhayr.getStateName()).isEqualTo("Asleep");
 
     }
 
@@ -43,9 +50,13 @@ class PersonTest {
 
         Person zuhayr = personFactory.createNewPerson("Zuhayr");
 
+        assertThat(zuhayr.getStateName()).isEqualTo("Asleep");
+
         lifeStateReporter.reportLifeStatus(zuhayr);
 
         zuhayr.wakeUp();
+
+        assertThat(zuhayr.getStateName()).isEqualTo("Awake");
 
         assertThrows(IllegalStateException.class, zuhayr::goToSleep);
 
