@@ -2,28 +2,23 @@ package com.zuhayrkhan.patterns.state.support.state;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-public class Context<STATE, LABEL> {
+public class Context<STATE> {
 
-    final StateRegistry<STATE, LABEL> stateRegistry;
+    final StateRegistry<STATE> stateRegistry;
 
-    final AtomicReference<LABEL> labelRef;
+    final AtomicReference<Class<? extends STATE>> stateRef;
 
-    public Context(StateRegistry<STATE, LABEL> stateRegistry,
-                   LABEL initialLabel) {
+    public Context(StateRegistry<STATE> stateRegistry,
+                   Class<? extends STATE> initialState) {
         this.stateRegistry = stateRegistry;
-        labelRef = new AtomicReference<>(initialLabel);
+        stateRef = new AtomicReference<>(initialState);
     }
 
     public STATE getState() {
-        return stateRegistry.getState(labelRef.get());
+        return stateRegistry.getState(stateRef.get());
     }
 
-    public void setLabel(LABEL label) {
-        labelRef.set(label);
+    public void setState(Class<? extends STATE> newState) {
+        stateRef.set(newState);
     }
-
-    public LABEL getLabel() {
-        return labelRef.get();
-    }
-
 }

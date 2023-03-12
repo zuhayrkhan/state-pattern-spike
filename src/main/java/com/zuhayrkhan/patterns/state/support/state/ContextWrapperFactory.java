@@ -5,28 +5,27 @@ import java.util.Arrays;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-public abstract class ContextWrapperFactory<STATE, LABEL,
-        CONTEXT_WRAPPER extends ContextWrapper<STATE, LABEL>> {
+public abstract class ContextWrapperFactory<STATE,
+        CONTEXT_WRAPPER extends ContextWrapper<STATE>> {
 
-    private final StateFactory<STATE, LABEL> stateFactory;
+    private final StateFactory<STATE> stateFactory;
 
-    private final LABEL initialLabel;
+    private final Class<? extends STATE> initialState;
 
     private final Class<CONTEXT_WRAPPER> contextWrapperClass;
 
-    protected ContextWrapperFactory(StateFactory<STATE, LABEL> stateFactory,
-                                    LABEL initialLabel,
+    protected ContextWrapperFactory(StateFactory<STATE> stateFactory,
+                                    Class<? extends STATE> initialState,
                                     Class<CONTEXT_WRAPPER> contextWrapperClass) {
         this.stateFactory = stateFactory;
-        this.initialLabel = initialLabel;
+        this.initialState = initialState;
         this.contextWrapperClass = contextWrapperClass;
     }
 
     protected CONTEXT_WRAPPER createContextWrapper(Object... initargs) {
 
-        Context<STATE, LABEL> context = new Context<>(new StateRegistry<>(stateFactory),
-                initialLabel
-        );
+        Context<STATE> context = new Context<>(new StateRegistry<>(stateFactory),
+                initialState);
 
         try {
             Class<?>[] initClasses = Stream.concat(Stream.of(context), Arrays.stream(initargs))

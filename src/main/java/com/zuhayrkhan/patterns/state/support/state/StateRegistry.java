@@ -3,30 +3,30 @@ package com.zuhayrkhan.patterns.state.support.state;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-public class StateRegistry<STATE, LABEL> {
+public class StateRegistry<STATE> {
 
-    protected final StateFactory<STATE, LABEL> stateFactory;
+    protected final StateFactory<STATE> stateFactory;
 
-    private final ConcurrentMap<LABEL, STATE> states
+    private final ConcurrentMap<Class<? extends STATE>, STATE> states
             = new ConcurrentHashMap<>();
 
-    public StateRegistry(StateFactory<STATE, LABEL> stateFactory) {
+    public StateRegistry(StateFactory<STATE> stateFactory) {
         this.stateFactory = stateFactory;
     }
 
-    public STATE getState(LABEL label) {
-        return createIfNecessary(label);
+    public STATE getState(Class<? extends STATE> state) {
+        return createIfNecessary(state);
     }
 
-    private STATE createIfNecessary(final LABEL label) {
-        if (states.get(label) == null) {
-            STATE state = stateFactory.createState(label);
-            STATE existing = states.putIfAbsent(label, state);
+    private STATE createIfNecessary(final Class<? extends STATE> stateClass) {
+        if (states.get(stateClass) == null) {
+            STATE state = stateFactory.createState(stateClass);
+            STATE existing = states.putIfAbsent(stateClass, state);
             if (existing != null) {
                 return existing;
             }
             return state;
         }
-        return states.get(label);
+        return states.get(stateClass);
     }
 }

@@ -2,8 +2,6 @@ package com.zuhayrkhan.patterns.state.life;
 
 import com.zuhayrkhan.patterns.state.life.model.stateful.NewPerson;
 import com.zuhayrkhan.patterns.state.life.model.stateful.NewPersonFactory;
-import com.zuhayrkhan.patterns.state.life.model.stateful.Person;
-import com.zuhayrkhan.patterns.state.life.model.stateful.PersonFactory;
 import com.zuhayrkhan.patterns.state.life.service.LifeStateReporter;
 import com.zuhayrkhan.patterns.state.life.state.LifeState;
 import com.zuhayrkhan.patterns.state.life.state.LifeStateFactory;
@@ -20,41 +18,11 @@ class PersonTest {
     private final LifeStateFactory lifeStateFactory =
             new LifeStateFactory(lifeStateReporter);
 
-    private final StateRegistry<LifeState, LifeState.Label> lifeStateRegistry =
+    private final StateRegistry<LifeState> lifeStateRegistry =
             new StateRegistry<>(lifeStateFactory);
-
-    private final PersonFactory personFactory =
-            new PersonFactory(lifeStateRegistry);
 
     private final NewPersonFactory newPersonFactory =
             new NewPersonFactory(lifeStateFactory);
-
-    @Test
-    void person_can_live_their_life() {
-
-        Person zuhayr = personFactory.createPerson("Zuhayr");
-
-        lifeStateReporter.reportLifeStatus(zuhayr);
-
-        zuhayr.wakeUp();
-        zuhayr.becomeHungry();
-        zuhayr.becomeTired();
-        zuhayr.goToSleep();
-
-    }
-
-    @Test
-    void person_can_live_their_life_wrong() {
-
-        Person zuhayr = personFactory.createPerson("Zuhayr");
-
-        lifeStateReporter.reportLifeStatus(zuhayr);
-
-        zuhayr.wakeUp();
-
-        assertThrows(IllegalStateException.class, zuhayr::goToSleep);
-
-    }
 
     @Test
     void new_person_can_live_their_life() {
