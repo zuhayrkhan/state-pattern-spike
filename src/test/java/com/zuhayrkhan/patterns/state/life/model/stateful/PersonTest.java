@@ -1,7 +1,5 @@
-package com.zuhayrkhan.patterns.state.life;
+package com.zuhayrkhan.patterns.state.life.model.stateful;
 
-import com.zuhayrkhan.patterns.state.life.model.stateful.Person;
-import com.zuhayrkhan.patterns.state.life.model.stateful.PersonFactory;
 import com.zuhayrkhan.patterns.state.life.service.LifeStateReporter;
 import com.zuhayrkhan.patterns.state.life.state.LifeStateFactory;
 import org.junit.jupiter.api.Test;

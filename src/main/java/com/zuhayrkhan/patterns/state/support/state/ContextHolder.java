@@ -15,4 +15,9 @@ public interface ContextHolder<STATE> {
     default String getStateName() {
         return getContext().getState().getClass().getSimpleName();
     }
+
+    default Class<STATE> getStateClass() {
+        return (Class<STATE>) getContext().getState().getClass();
+    }
+
 }
