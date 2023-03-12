@@ -3,8 +3,7 @@ package com.zuhayrkhan.patterns.state.life.state;
 import com.zuhayrkhan.patterns.state.life.service.LifeStateReporter;
 import com.zuhayrkhan.patterns.state.support.state.StateFactory;
 
-public class LifeStateFactory implements
-        StateFactory<LifeState> {
+public class LifeStateFactory implements StateFactory<LifeState> {
 
     private final LifeStateReporter lifeStateReporter;
 

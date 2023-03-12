@@ -2,9 +2,9 @@ package com.zuhayrkhan.patterns.state.life.model.stateful;
 
 import com.zuhayrkhan.patterns.state.life.state.LifeState;
 import com.zuhayrkhan.patterns.state.support.state.Context;
-import com.zuhayrkhan.patterns.state.support.state.ContextWrapper;
+import com.zuhayrkhan.patterns.state.support.state.ContextHolder;
 
-public class Person implements ContextWrapper<LifeState> {
+public class Person implements ContextHolder<LifeState> {
 
     private final Context<LifeState> context;
     private final String name;

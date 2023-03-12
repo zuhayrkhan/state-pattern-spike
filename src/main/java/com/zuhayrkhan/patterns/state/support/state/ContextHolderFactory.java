@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-public abstract class ContextWrapperFactory<STATE,
-        CONTEXT_WRAPPER extends ContextWrapper<STATE>> {
+public abstract class ContextHolderFactory<STATE,
+        CONTEXT_WRAPPER extends ContextHolder<STATE>> {
 
     private final StateFactory<STATE> stateFactory;
 
@@ -14,9 +14,9 @@ public abstract class ContextWrapperFactory<STATE,
 
     private final Class<CONTEXT_WRAPPER> contextWrapperClass;
 
-    protected ContextWrapperFactory(StateFactory<STATE> stateFactory,
-                                    Class<? extends STATE> initialState,
-                                    Class<CONTEXT_WRAPPER> contextWrapperClass) {
+    protected ContextHolderFactory(StateFactory<STATE> stateFactory,
+                                   Class<? extends STATE> initialState,
+                                   Class<CONTEXT_WRAPPER> contextWrapperClass) {
         this.stateFactory = stateFactory;
         this.initialState = initialState;
         this.contextWrapperClass = contextWrapperClass;

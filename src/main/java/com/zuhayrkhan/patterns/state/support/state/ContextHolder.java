@@ -1,6 +1,6 @@
 package com.zuhayrkhan.patterns.state.support.state;
 
-public interface ContextWrapper<STATE> {
+public interface ContextHolder<STATE> {
 
     Context<STATE> getContext();
 
