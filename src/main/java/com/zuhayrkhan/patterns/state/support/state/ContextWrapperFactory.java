@@ -22,19 +22,19 @@ public abstract class ContextWrapperFactory<STATE,
         this.contextWrapperClass = contextWrapperClass;
     }
 
-    protected CONTEXT_WRAPPER createContextWrapper(Object... initargs) {
+    protected CONTEXT_WRAPPER createContextWrapper(Object... initArgs) {
 
         Context<STATE> context = new Context<>(new StateRegistry<>(stateFactory),
                 initialState);
 
         try {
-            Class<?>[] initClasses = Stream.concat(Stream.of(context), Arrays.stream(initargs))
+            Class<?>[] initClasses = Stream.concat(Stream.of(context), Arrays.stream(initArgs))
                     .map((Function<Object, Class<?>>) Object::getClass)
                     .toArray(Class[]::new);
 
-            Object[] actualInitArgs = new Object[1 + initargs.length];
+            Object[] actualInitArgs = new Object[1 + initArgs.length];
             actualInitArgs[0] = context;
-            System.arraycopy(initargs, 0, actualInitArgs, 1, initargs.length);
+            System.arraycopy(initArgs, 0, actualInitArgs, 1, initArgs.length);
             return contextWrapperClass.getConstructor(initClasses)
                     .newInstance(actualInitArgs);
         } catch (NoSuchMethodException | InvocationTargetException | InstantiationException |

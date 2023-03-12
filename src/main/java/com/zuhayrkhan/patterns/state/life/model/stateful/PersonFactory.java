@@ -5,16 +5,16 @@ import com.zuhayrkhan.patterns.state.life.state.LifeState;
 import com.zuhayrkhan.patterns.state.life.state.LifeStateFactory;
 import com.zuhayrkhan.patterns.state.support.state.ContextWrapperFactory;
 
-public class NewPersonFactory extends
-        ContextWrapperFactory<LifeState, NewPerson> {
+public class PersonFactory extends
+        ContextWrapperFactory<LifeState, Person> {
 
-    public NewPersonFactory(LifeStateFactory lifeStateFactory) {
+    public PersonFactory(LifeStateFactory lifeStateFactory) {
         super(lifeStateFactory,
                 Asleep.class,
-                NewPerson.class);
+                Person.class);
     }
 
-    public NewPerson createNewPerson(String name) {
+    public Person createNewPerson(String name) {
         return createContextWrapper(name);
     }
 

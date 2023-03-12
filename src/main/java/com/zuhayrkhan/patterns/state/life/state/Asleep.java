@@ -1,6 +1,6 @@
 package com.zuhayrkhan.patterns.state.life.state;
 
-import com.zuhayrkhan.patterns.state.life.model.stateful.NewPerson;
+import com.zuhayrkhan.patterns.state.life.model.stateful.Person;
 import com.zuhayrkhan.patterns.state.life.service.LifeStateReporter;
 
 public class Asleep implements LifeState {
@@ -12,7 +12,7 @@ public class Asleep implements LifeState {
     }
 
     @Override
-    public void wakeUp(NewPerson person) {
+    public void wakeUp(Person person) {
         person.getContext().setState(Awake.class);
         lifeStateReporter.reportLifeStatus(person);
     }

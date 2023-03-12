@@ -4,12 +4,12 @@ import com.zuhayrkhan.patterns.state.life.state.LifeState;
 import com.zuhayrkhan.patterns.state.support.state.Context;
 import com.zuhayrkhan.patterns.state.support.state.ContextWrapper;
 
-public class NewPerson implements ContextWrapper<LifeState> {
+public class Person implements ContextWrapper<LifeState> {
 
     private final Context<LifeState> context;
     private final String name;
 
-    public NewPerson(Context<LifeState> context, String name) {
+    public Person(Context<LifeState> context, String name) {
         this.context = context;
         this.name = name;
     }
