@@ -15,7 +15,7 @@ public class PersonFactory extends
     }
 
     public Person createNewPerson(String name) {
-        return createContextWrapper(name);
+        return new Person(createContext(), name);
     }
 
 }

@@ -14,7 +14,7 @@ public class TCPConnectionFactory extends ContextHolderFactory<TCPState, TCPConn
     }
 
     public TCPConnection createTCPConnection() {
-        return createContextWrapper();
+        return new TCPConnection(createContext());
     }
 
 }
