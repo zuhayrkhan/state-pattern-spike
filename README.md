@@ -55,7 +55,7 @@ Project Layout
 
 Build and Test
 
-- Requirements: Java 17+ (as configured by project) and Maven
+- Requirements: Java 21 (as configured by project) and Maven
 - Run tests: mvn -B -ntp -DskipTests=false test
 
 Notes on Thread Safety
