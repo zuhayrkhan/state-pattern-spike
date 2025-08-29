@@ -9,8 +9,7 @@ public class TCPConnectionFactory extends ContextHolderFactory<TCPState, TCPConn
 
     protected TCPConnectionFactory(StateFactory<TCPState> stateFactory) {
         super(stateFactory,
-                TCPClosed.class,
-                TCPConnection.class);
+                TCPClosed.class);
     }
 
     public TCPConnection createTCPConnection() {

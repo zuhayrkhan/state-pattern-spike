@@ -16,8 +16,9 @@ public interface ContextHolder<STATE> {
         return getContext().getState().getClass().getSimpleName();
     }
 
-    default Class<STATE> getStateClass() {
-        return (Class<STATE>) getContext().getState().getClass();
+    @SuppressWarnings("unchecked")
+    default Class<? extends STATE> getStateClass() {
+        return (Class<? extends STATE>) getContext().getState().getClass();
     }
 
 }

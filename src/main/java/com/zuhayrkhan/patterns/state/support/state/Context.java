@@ -1,5 +1,6 @@
 package com.zuhayrkhan.patterns.state.support.state;
 
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Context<STATE> {
@@ -10,8 +11,8 @@ public class Context<STATE> {
 
     public Context(StateRegistry<STATE> stateRegistry,
                    Class<? extends STATE> initialState) {
-        this.stateRegistry = stateRegistry;
-        stateRef = new AtomicReference<>(initialState);
+        this.stateRegistry = Objects.requireNonNull(stateRegistry, "stateRegistry must not be null");
+        this.stateRef = new AtomicReference<>(Objects.requireNonNull(initialState, "initialState must not be null"));
     }
 
     public STATE getState() {
@@ -19,6 +20,6 @@ public class Context<STATE> {
     }
 
     public void setState(Class<? extends STATE> newState) {
-        stateRef.set(newState);
+        stateRef.getAndSet(Objects.requireNonNull(newState, "newState must not be null"));
     }
 }

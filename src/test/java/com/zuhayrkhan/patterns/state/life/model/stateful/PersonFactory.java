@@ -10,8 +10,7 @@ public class PersonFactory extends
 
     public PersonFactory(LifeStateFactory lifeStateFactory) {
         super(lifeStateFactory,
-                Asleep.class,
-                Person.class);
+                Asleep.class);
     }
 
     public Person createNewPerson(String name) {
